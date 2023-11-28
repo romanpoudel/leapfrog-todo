@@ -1,0 +1,12 @@
+{
+  "name": "4_todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass styles/sass/style.scss styles/styles.css -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
