@@ -36,6 +36,7 @@
 		background-color: $color-primary;
 		border: none;
 		font-size: $font-size-small;
+		cursor: pointer;
 		@media screen and (min-width: $breakpoint-medium) {
 			font-size: $font-size-medium;
 		}

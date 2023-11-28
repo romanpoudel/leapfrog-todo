@@ -1,6 +1,13 @@
 const inputField = document.getElementById("textInput");
+const searchField = document.getElementById("searchInput");
 const button = document.querySelector(".todo__icon");
 const todo = document.querySelector(".todo__list");
+
+//search listener
+searchField.addEventListener("input", (e) => {
+	console.log(e.target.value);
+	searchTask(e.target.value);
+});
 //creating ul
 const todoContainer = document.createElement("ul");
 todoContainer.className = "todo__container";
@@ -23,10 +30,12 @@ button.addEventListener("click", () => {
 	}
 });
 
+//add task function
 function addTask(value) {
 	//creating li
 	const todoItem = document.createElement("li");
 	todoItem.className = "todo__item";
+	todoItem.completed = false; //try
 
 	//appending li to ul
 	todoContainer.appendChild(todoItem);
@@ -39,13 +48,81 @@ function addTask(value) {
 	//delete task button
 	const todoRemove = document.createElement("button");
 	todoRemove.className = "todo__remove";
-	todoRemove.innerHTML = "Completed";
-
+	todoRemove.innerHTML = "Remaining";
 	//addding text to li
 	todoText.innerHTML = value;
 	//adding delete btn inside li
 	todoItem.appendChild(todoRemove);
 	todoRemove.addEventListener("click", function () {
-		todoContainer.removeChild(todoItem);
+		// todoContainer.removeChild(todoItem);
+		todoItem.completed = true; //try
+		todoRemove.innerHTML = "Completed";
 	});
 }
+
+//search task function
+function searchTask(value) {
+	const searchValue = value.toLowerCase();
+	const todoItem = document.querySelectorAll(".todo__item");
+	todoItem.forEach((item) => {
+		const taskText = item.innerHTML.toLowerCase();
+		if (taskText.includes(searchValue)) {
+			item.style.display = "flex";
+		} else {
+			item.style.display = "none";
+		}
+	});
+}
+
+//navigation
+const allTask = document.getElementById("all");
+const completeTask = document.getElementById("complete");
+const remainTask = document.getElementById("remain");
+
+allTask.addEventListener("click", () => {
+	const todoItem = document.querySelectorAll(".todo__item");
+	todoItem.forEach((item) => {
+		item.style.display = "flex";
+		console.log(item.completed);
+	});
+});
+
+completeTask.addEventListener("click", () => {
+	const todoItem = document.querySelectorAll(".todo__item");
+	todoItem.forEach((item) => {
+		if (item.completed) {
+			item.style.display = "flex";
+		} else {
+			item.style.display = "none";
+		}
+	});
+});
+
+remainTask.addEventListener("click", () => {
+	const todoItem = document.querySelectorAll(".todo__item");
+	todoItem.forEach((item) => {
+		if (!item.completed) {
+			item.style.display = "flex";
+		} else {
+			item.style.display = "none";
+		}
+	});
+});
+
+//make nav active
+
+// Get all navigation links
+const links = document.querySelectorAll('.header__link');
+
+// Add click event listener to each link
+links.forEach(link => {
+    link.addEventListener('click', function () {
+        // Remove 'active' class from all links
+        links.forEach(otherLink => {
+            otherLink.classList.remove('header__link--active');
+        });
+
+        // Add 'active' class to the clicked link
+        link.classList.add('header__link--active');
+    });
+});

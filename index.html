@@ -20,17 +20,26 @@
 					<nav>
 						<ul class="header__links">
 							<li>
-								<a
+								<!-- <a
 									href="#"
 									class="header__link header__link--active"
 									>Home</a
-								>
+								> -->
+								<p class="header__link" id="all">
+									Home
+								</p>
 							</li>
 							<li>
-								<a href="#" class="header__link">Completed</a>
+								<!-- <a href="#" class="header__link">Completed</a> -->
+								<p class="header__link " id="complete">
+									Completed
+								</p>
 							</li>
 							<li>
-								<a href="#" class="header__link">Remaining</a>
+								<!-- <a href="#" class="header__link">Remaining</a> -->
+								<p class="header__link" id="remain">
+									Remaining
+								</p>
 							</li>
 						</ul>
 					</nav>
@@ -45,6 +54,7 @@
 						<input
 							type="text"
 							placeholder="Search..."
+							id="searchInput"
 							class="search__input"
 						/>
 						<i class="bi bi-search search__icon"></i>
@@ -64,11 +74,11 @@
 						/>
 						<i class="bi bi-plus-circle-fill todo__icon"></i>
 					</div>
-					<div class="todo__list">
-					</div>
+					<div class="todo__list"></div>
 				</div>
 			</div>
 		</main>
 		<script src="./script.js"></script>
+		<script src="./sort.js"></script>
 	</body>
 </html>

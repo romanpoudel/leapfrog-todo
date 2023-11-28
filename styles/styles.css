@@ -401,6 +401,7 @@ ul {
   border-bottom: 2px;
   color: white;
   font-size: 16px;
+  cursor: pointer;
 }
 @media screen and (min-width: 640px) {
   .header__link {
@@ -448,7 +449,6 @@ ul {
   transform: translateY(-50%);
   color: #038e43;
   font-size: 24px;
-  cursor: pointer;
 }
 
 .todo {
@@ -489,6 +489,7 @@ ul {
   background-color: #038e43;
   border: none;
   font-size: 16px;
+  cursor: pointer;
 }
 @media screen and (min-width: 640px) {
   .todo__remove {
