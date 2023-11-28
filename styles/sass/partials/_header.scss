@@ -1,0 +1,49 @@
+.header {
+	&__main {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-direction: column;
+		@media screen and (min-width: $breakpoint-medium) {
+			flex-direction: row;
+		}
+	}
+	&__links {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		li {
+			margin-left: 25px;
+			padding: 15px 0;
+			@media screen and (min-width: $breakpoint-medium) {
+				margin-left: 72px;
+				padding: 27px 0;
+			}
+		}
+	}
+	&__link {
+		display: inline-block;
+		padding: 8px 0;
+		border-bottom: 2px;
+		color: white;
+		font-size: $font-size-small;
+		@media screen and (min-width: $breakpoint-medium) {
+			font-size: $font-size-medium;
+		}
+		&--active {
+			font-weight: bold;
+			font-size: $font-size-medium;
+			@media screen and (min-width: $breakpoint-medium) {
+				font-size: $font-size-large;
+			}
+		}
+	}
+	&__logo {
+		font-weight: bold;
+		font-size: $font-size-xlarge;
+		color: white;
+		@media screen and (max-width: 768px) {
+			font-size: $font-size-medium;
+		}
+	}
+}
