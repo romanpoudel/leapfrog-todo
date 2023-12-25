@@ -35,7 +35,6 @@ function addTask(value) {
 	//creating li
 	const todoItem = document.createElement("li");
 	todoItem.className = "todo__item";
-	todoItem.completed = false; //try
 
 	//appending li to ul
 	todoContainer.appendChild(todoItem);
@@ -55,8 +54,11 @@ function addTask(value) {
 	todoItem.appendChild(todoRemove);
 	todoRemove.addEventListener("click", function () {
 		// todoContainer.removeChild(todoItem);
-		todoItem.completed = true; //try
-		todoRemove.innerHTML = "Completed";
+		if (todoRemove.innerHTML === "Remaining") {
+			todoRemove.innerHTML = "Completed";
+		} else {
+			todoRemove.innerHTML = "Remaining";
+		}
 	});
 }
 
@@ -112,17 +114,17 @@ remainTask.addEventListener("click", () => {
 //make nav active
 
 // Get all navigation links
-const links = document.querySelectorAll('.header__link');
+const links = document.querySelectorAll(".header__link");
 
 // Add click event listener to each link
-links.forEach(link => {
-    link.addEventListener('click', function () {
-        // Remove 'active' class from all links
-        links.forEach(otherLink => {
-            otherLink.classList.remove('header__link--active');
-        });
+links.forEach((link) => {
+	link.addEventListener("click", function () {
+		// Remove 'active' class from all links
+		links.forEach((otherLink) => {
+			otherLink.classList.remove("header__link--active");
+		});
 
-        // Add 'active' class to the clicked link
-        link.classList.add('header__link--active');
-    });
+		// Add 'active' class to the clicked link
+		link.classList.add("header__link--active");
+	});
 });
