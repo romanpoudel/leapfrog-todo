@@ -3,6 +3,10 @@ const searchField = document.getElementById("searchInput");
 const button = document.querySelector(".todo__icon");
 const todo = document.querySelector(".todo__list");
 
+const allTask = document.getElementById("all");
+const completeTask = document.getElementById("complete");
+const remainTask = document.getElementById("remain");
+
 //search listener
 searchField.addEventListener("input", (e) => {
 	console.log(e.target.value);
@@ -42,6 +46,7 @@ function addTask(value) {
 	//creating p tag
 	const todoText = document.createElement("p");
 	todoText.className = "todo__text";
+	todoText.setAttribute("status", "false");
 	todoItem.appendChild(todoText);
 
 	//delete task button
@@ -53,13 +58,19 @@ function addTask(value) {
 	//adding delete btn inside li
 	todoItem.appendChild(todoRemove);
 	todoRemove.addEventListener("click", function () {
-		// todoContainer.removeChild(todoItem);
-		if (todoRemove.innerHTML === "Remaining") {
+		if (todoText.getAttribute("status")=="false") {
+			todoText.setAttribute("status","true");
 			todoRemove.innerHTML = "Completed";
 		} else {
-			todoRemove.innerHTML = "Remaining";
+			todoText.setAttribute("status","false");
+			todoRemove.innerHTML ="Remaining";
 		}
 	});
+	//simulate click when task is added on the active nav
+	const activeLink = document.querySelector(".header__link--active");
+	if (activeLink) {
+		activeLink.click();
+}
 }
 
 //search task function
@@ -77,22 +88,21 @@ function searchTask(value) {
 }
 
 //navigation
-const allTask = document.getElementById("all");
-const completeTask = document.getElementById("complete");
-const remainTask = document.getElementById("remain");
 
 allTask.addEventListener("click", () => {
 	const todoItem = document.querySelectorAll(".todo__item");
+	console.log("all", todoItem);
 	todoItem.forEach((item) => {
 		item.style.display = "flex";
-		console.log(item.completed);
 	});
 });
 
 completeTask.addEventListener("click", () => {
 	const todoItem = document.querySelectorAll(".todo__item");
+	console.log("1", todoItem);
 	todoItem.forEach((item) => {
-		if (item.completed) {
+		const todoText = item.querySelector(".todo__text");
+		if (todoText.getAttribute("status") == "true") {
 			item.style.display = "flex";
 		} else {
 			item.style.display = "none";
@@ -101,13 +111,14 @@ completeTask.addEventListener("click", () => {
 });
 
 remainTask.addEventListener("click", () => {
-	const todoItem = document.querySelectorAll(".todo__item");
-	todoItem.forEach((item) => {
-		if (!item.completed) {
-			item.style.display = "flex";
-		} else {
-			item.style.display = "none";
-		}
+	const todoItems = document.querySelectorAll(".todo__item");
+	todoItems.forEach((item) => {
+			const todoText = item.querySelector(".todo__text");
+			if (todoText.getAttribute("status") == "false") {
+					item.style.display = "flex";
+			} else {
+					item.style.display = "none";
+			}
 	});
 });
 
